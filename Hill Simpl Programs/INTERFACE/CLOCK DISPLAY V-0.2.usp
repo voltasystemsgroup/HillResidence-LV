@@ -1,0 +1,99 @@
+
+
+DIGITAL_INPUT _24_HOUR_CLOCK;
+
+ANALOG_INPUT HOUR, MINUTE;
+
+
+STRING_OUTPUT DISPLAY;
+
+Integer gnInitComplete, gnMinute, gnHour;
+
+Function UpdateDisplay( )
+{
+	Integer nHour;
+	String sAMPM[2], sHour[2], sMinute[2];
+		
+	If( _24_HOUR_CLOCK )
+	{
+		If( HOUR < 10 )
+			sHour = "0" + IToA( HOUR );
+		Else
+			sHour = IToA( HOUR );
+			
+		If( MINUTE < 10 )
+			sMinute = "0" + IToA( MINUTE );
+		Else
+			sMinute = IToA( MINUTE );
+			
+		DISPLAY = sHour + ":" + sMinute;
+	}
+	Else
+	{
+		If( HOUR < 12 )
+			sAMPM = "AM";
+		Else
+			sAMPM = "PM";
+		
+		If( HOUR < 12 )
+		{			
+			If( HOUR = 0 ) 
+			{
+				nHour = 12;
+			}
+			Else
+			{
+				nHour = HOUR;							
+			}
+			sHour = IToA( nHour );
+		}
+		Else
+		{
+			nHour = HOUR % 12;
+			
+			If( nHour = 0 )
+				nHour = 12;
+			
+			sHour = IToA( nHour );
+		}
+		
+		If( MINUTE < 10 )
+			sMinute = "0" + IToA( MINUTE );
+		Else
+			sMinute = IToA( MINUTE );
+			
+		DISPLAY = sHour + ":" + sMinute + " " + sAMPM;
+	}
+}
+
+CHANGE HOUR, MINUTE
+{
+	If( gnInitComplete )
+	{
+		If( MINUTE != gnMinute || HOUR != gnHour )
+		{
+		    gnMinute = MINUTE;
+		    gnHour = HOUR;
+			UpdateDisplay( );
+		}	
+	}
+}
+
+CHANGE _24_HOUR_CLOCK
+{
+	If( gnInitComplete )
+	{
+		UpdateDisplay( );
+	}	
+}
+
+Function Main( )
+{
+	gnInitComplete = 0;
+	gnInitComplete = !WaitForInitializationComplete( );
+	
+	gnMinute = 0;
+	gnHour = 0;
+	UpdateDisplay( );
+}
+

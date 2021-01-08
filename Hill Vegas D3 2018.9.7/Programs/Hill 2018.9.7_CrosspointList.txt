@@ -1,0 +1,19 @@
+Crosspoint listing for C:\Users\Mike\Documents\00 Volta\Hill, Rick LV\Hill 2018.9.7\Programs\Hill 2018.9.7.SMW
+
+Note:  Crosspoint symbols with EquipID or ControlID set to 0d are not routeable.
+
+Equipment Crosspoint Routing.                                                                       EquipID
+===========================================================================================================
+S-14.10 in macro S-1.5.73.1 (Module File C:\Program Files (x86)\Crestron\Cresdb\Modules\ch          0
+vtstat_nosked_v4_0.cmc)                                                                             
+S-14.10 in macro S-1.5.74.1 (Module File C:\Program Files (x86)\Crestron\Cresdb\Modules\ch          0
+vtstat_nosked_v4_0.cmc)                                                                             
+S-7.12.10 in macro S-1.5.75.1 (Module File C:\Program Files (x86)\Crestron\Cresdb\Modules\          0
+chvthstat_nosked_v4_0.cmc)                                                                          
+S-7.12.10 in macro S-1.5.76.1 (Module File C:\Program Files (x86)\Crestron\Cresdb\Modules\          0
+chvthstat_nosked_v4_0.cmc)                                                                          
+
+Control Crosspoint Routing.                                                                         ControlID
+=============================================================================================================
+No symbols of this type found in the program
+

@@ -1,0 +1,127 @@
+[BEGIN]
+  ObjTp=FSgntr
+  Sgntr=ArchiveManifest
+  RelVrs=4.10.07
+  IsProgram=1
+  TopLevelProgram=PT1604 INTERFACE 2019.2.22.smw
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=PT1604 INTERFACE 2019.2.22.smw
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=PT1604 INTERFACE 2019.2.22.sig
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=PT1604 INTERFACE 2019.2.22.lpz
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=PT1604 INTERFACE 2019.2.22.smft
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=PT1604 INTERFACE 2019.2.22.lpz.hash
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=Boot v1.00.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=Boot v1.00.ush
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=AVZ Source Index Interface v1.07.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=AVZ Control Device xPt v1.07.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=Source Control Device xPt. v1.05.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=Serial Init v1.00.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=Generic Device xPt. v1.06.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=AVZ Control Interface xPt v1.07.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=xPt. Single Equipment Connection v1.01.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=AVZ Control Interface v1.07.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=Source Control Interface xPt. v1.05.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=xPt. Single Equipment Connection v1.00.ush
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=Generic Interface xPt. v1.06.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=COUNTDOWN TIMER V-0_3.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=TWO WAY ABUF V-0_1.umc
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=TWO WAY ABUF V-0_1.ush
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=TWO WAY ABUF V-0_1.usp
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=COUNTDOWN TIMER V-0_2.ush
+  Scope=1
+[END]
+[BEGIN]
+  ObjTp=ArchiveItem
+  File=CLOCK VALS V-0_1.ush
+  Scope=1
+[END]

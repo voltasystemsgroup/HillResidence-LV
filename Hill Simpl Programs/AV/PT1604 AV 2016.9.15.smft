@@ -1,0 +1,14 @@
+<Device Model="CP3">
+   <Network Type="Cresnet" Id="01"/>
+   <Network Type="Ethernet" Id="02">
+      <Device Model="DM-MD8x8" DeviceId="21"/>
+      <Device Model="SWAMP-24x8 (Ethernet)." DeviceId="22"/>
+      <Device Model="HD-XSPA" DeviceId="31" Name="HD-XSPA [AVR_01][FAMILY RM]"/>
+      <Device Model="HD-XSPA" DeviceId="32" Name="HD-XSPA [AVR_02][MASTER RM]"/>
+      <Device Model="HD-XSPA" DeviceId="33" Name="HD-XSPA [AVR_03][MEDIA RM]"/>
+      <Device Model="Autonomic MMS-5A" DeviceId="41"/>
+      <Device Model="Autonomic MMS-5A" DeviceId="42"/>
+      <Device Model="Autonomic MMS-5A" DeviceId="43"/>
+      <Device Model="Autonomic MMS-5A" DeviceId="44"/>
+   </Network>
+</Device>

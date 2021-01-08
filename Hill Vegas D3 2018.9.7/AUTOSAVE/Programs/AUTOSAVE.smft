@@ -1,0 +1,74 @@
+<Device Model="DIN-AP3">
+   <Network Type="Cresnet" Id="01">
+      <Device Model="CLX-1DIM8" DeviceId="03" Name="Enclosure 1 Slot 03"/>
+      <Device Model="CLX-1DELV4" DeviceId="04" Name="Enclosure 1 Slot 04"/>
+      <Device Model="CLX-1DELV4" DeviceId="05" Name="Enclosure 1 Slot 05"/>
+      <Device Model="CLX-1DELV4" DeviceId="06" Name="Enclosure 1 Slot 06"/>
+      <Device Model="CLX-1DELV4" DeviceId="07" Name="Enclosure 1 Slot 07"/>
+      <Device Model="CLX-1DELV4" DeviceId="08" Name="Enclosure 1 Slot 08"/>
+      <Device Model="CLX-1DELV4" DeviceId="09" Name="Enclosure 1 Slot 09"/>
+      <Device Model="CLX-1DIM8" DeviceId="0A" Name="Enclosure 1 Slot 01"/>
+      <Device Model="CLX-1DIM4" DeviceId="10" Name="Enclosure 1 Slot 10"/>
+      <Device Model="CLX-1DELV4" DeviceId="11" Name="Enclosure 1 Slot 11"/>
+      <Device Model="CLX-1DIM8" DeviceId="12" Name="Enclosure 1 Slot 12"/>
+      <Device Model="CLX-1DELV4" DeviceId="13" Name="Enclosure 1 Slot 13"/>
+      <Device Model="CLX-2DIM8" DeviceId="14" Name="Enclosure 1 Slot 14"/>
+      <Device Model="CNX-B4" DeviceId="21" Name="MAIDS KP01"/>
+      <Device Model="CNX-B8" DeviceId="22" Name="SERVICE HALL KP01"/>
+      <Device Model="CNX-B8" DeviceId="23" Name="FAMILY RM KP01"/>
+      <Device Model="CNX-B8" DeviceId="24" Name="FAMILY RM KP02"/>
+      <Device Model="CNX-B8" DeviceId="25" Name="GREAT RM KP01"/>
+      <Device Model="CNX-B8" DeviceId="26" Name="HIS OFFICE KP01"/>
+      <Device Model="CNX-B8" DeviceId="27" Name="MAIN HALL KP01"/>
+      <Device Model="CNX-B8" DeviceId="28" Name="MASTER BED KP01"/>
+      <Device Model="CNX-B8" DeviceId="29" Name="MASTER BED KP02"/>
+      <Device Model="CNX-B8" DeviceId="31" Name="MASTER BED KP03"/>
+      <Device Model="CNX-B8" DeviceId="32" Name="MASTER BATH HERS KP01"/>
+      <Device Model="CNX-B8" DeviceId="33" Name="GUEST HALL KP01"/>
+      <Device Model="CNX-B8" DeviceId="34" Name="GUEST HALL KP02"/>
+      <Device Model="CNX-B8" DeviceId="35" Name="GUEST HALL RM1 KP03"/>
+      <Device Model="CNX-B8" DeviceId="36" Name="GUEST HALL RM2 KP04"/>
+      <Device Model="CNX-B8" DeviceId="37" Name="GUEST RM 1 KP01"/>
+      <Device Model="CNX-B8" DeviceId="38" Name="GUEST RM 2 KP01"/>
+      <Device Model="CHV-TSTATA,CHV-THSTATA," DeviceId="41" Name="TSTAT01 FAMILY"/>
+      <Device Model="CHV-TSTATA,CHV-THSTATA," DeviceId="42" Name="TSTAT02 GUEST"/>
+      <Device Model="CHV-TSTATA,CHV-THSTATA," DeviceId="43" Name="THSTAT03 LIVING"/>
+      <Device Model="CHV-TSTATA,CHV-THSTATA," DeviceId="44" Name="THSTAT04 MASTER"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="51" Name="Window 1 Blackout"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="52" Name="Window 1 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="53" Name="Door 1 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="54" Name="Door 2 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="55" Name="Window 1 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="56" Name="Window 2 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="57" Name="Window 3 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="58" Name="Door 2 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="59" Name="Door 1 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="61" Name="Door 1 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="62" Name="Door 2 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="63" Name="Window 1 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="64" Name="Window 2 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="65" Name="Window 3 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="66" Name="Window 4 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="67" Name="Window 5 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="68" Name="Window 6 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="69" Name="Window 7 Shade"/>
+      <Device Model="CSM-QMTDC-256-2-CN" DeviceId="71" Name="Window 8 Shade"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="72" Name="Door 1 Blackout"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="73" Name="Door 1 Shade"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="74" Name="Window 1 Blackout"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="75" Name="Window 1 Shade"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="76" Name="Window 2 Blackout"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="77" Name="Window 2 Shade"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="78" Name="Window 3 Blackout"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="79" Name="Window 3 Shade"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="81" Name="Window 1 Shade"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="82" Name="Window 1 Shade"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="83" Name="Door 1 Blackout"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="84" Name="Door 1 Shade"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="85" Name="Door 1 Blackout"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="86" Name="Door 1 Shade"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="87" Name="Window 1 Blackout"/>
+      <Device Model="CSM-QMT50-DCCN" DeviceId="88" Name="Window 1 Blackout"/>
+   </Network>
+   <Network Type="Ethernet" Id="02"/>
+</Device>

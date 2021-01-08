@@ -1,0 +1,2819 @@
+<html>
+	<head>
+		<title>Load Wiring</title>
+		<style type="text/css">
+			<!--
+            body.default		{ font-family: Arial, Helvetica;
+            font-size: 10pt }
+
+            table.default		{ font-family: Arial, Helvetica;
+            border-collapse: collapse;
+            empty-cells: show;
+            table-layout: fixed;
+            font-size: 9pt}
+
+            table.module		{ font-family: Arial, Helvetica;
+            font-size: 8.5pt;
+            border-collapse: collapse;
+            empty-cells: show;
+            table-layout: fixed }
+
+            table.page		    { page-break-after: always }
+
+            table.encl_view		{ border: 1pt solid black;
+            background: #FFFFCC;
+            font-size: 6pt;
+            table-layout: fixed }
+
+            table.header        { font-family:Arial, Helvetica;
+            font-size: 10pt;
+            border-collapse:collapse;
+            width:100%;
+            empty-cells: show;
+            margin-bottom: 0.05in;
+            cell-padding:0.01in }
+            
+            table.header_title        { font-family:Arial, Helvetica;
+            font-size: 10pt;
+            border-collapse:collapse;
+            width:100%;
+            empty-cells: show;
+            margin-bottom: 0.01in;
+            cell-padding:0.01in }
+
+            tr.titleblock		{ font-weight: normal; font-size: 10pt;
+            vertical-align: top }
+
+            tr.pageseparate		{ background: rgb(214,214,214);
+            vertical-align: center;
+            height: 0.3in }
+
+            tr.circuit		    { height: 0.25in }
+
+            tr.encl_row		    { spacing: 5px }
+
+            td.reporttitle		{ font-weight: bold; font-size: 12pt }
+
+            td.titlebottom		{ border-bottom: 0.05in solid rgb(170,170,170) }
+
+            td.titletop		    { border-top: 0.05in solid rgb(170,170,170) }
+
+            td.pagetitle		{ font-size: 10pt;
+            border-top: 0.01in solid black;
+            border-bottom: 0.01in solid black }
+
+
+            td.modulename		{ font-weight: bold; font-size: 9pt;
+            padding-bottom: 2px }
+
+            td.hot   			{ background: black;
+            font-weight: bold;
+            color: white;
+            border: 1pt solid black }
+
+            td.ckt_loc	    	{ padding-right: 7px;
+            padding-left: 7px }
+
+
+            td.ckt_red		    { background: rgb(214, 82, 87);
+            color: black;
+            border: 1pt solid black }
+
+            td.ckt_blue		    { background: rgb(106, 162, 219);
+            color: black;
+            border: 1pt solid black }
+
+            td.ckt_yellow		  { background: rgb(212, 212, 0);
+            color: black;
+            border: 1pt solid black }
+
+            td.ckt_white		{ background: #FFFFFFF;
+            color: black;
+            border: 1pt solid black }
+
+            td.feedseparate     { background: rgb(212,208,172);
+            border: 1pt solid black }
+
+            td.ckt_type		    {  }
+
+            td.ckt_color		{  }
+
+            td.bar			    { background: black;
+            border: 1pt solid black }
+
+            td.encl	 		    { padding-top: 20pt;
+            padding-left: 10pt;
+            width: 60px }
+
+            td.encl_cur		    { background: rgb(214,214,214);
+            border: 2pt solid black;
+            font-weight: bold;
+            width: 15px;
+            height: 25px }
+
+            td.encl_cell		{ background: white;
+            border: 1pt solid black;
+            width: 15px;
+            height: 25px }
+
+            img.arr_tail		{ width: 7;
+            height: 1 }
+
+            img.arr_front		{ width: 7;
+            height: 1 }
+
+            img.arr_head		{ width: 5;
+            height: 5 }
+
+            div.encl_name		{ font-weight: bold; font-size: 9pt;
+            text-align: center }
+
+            table.mod_data		{ border-collapse: collapse;
+            empty-cells: show;
+            table-layout: fixed;
+            font-size: 9.5pt;
+            page-break-after: always }
+
+            td.mod_data_lt		{ text-align: left;
+            padding: 0pt;
+            border-right: 1.5pt solid black;
+            height: 80px }
+
+            td.mod_data_rt		{ text-align: right;
+            padding: 0pt;
+            border-left: 1.5pt solid black;
+            height: 80px }
+
+            td.fix_img_lt		{ background: rgb(250,250,250) }
+
+            td.fix_img_rt		{ background: rgb(250,250,250) }
+
+            td.mod_img		    { background: rgb(250,250,250) }
+
+            td.no_inst		    { background: rgb(250,250,250);
+            border: 1pt dashed gray;
+            font-weight: bold; font-size: 8.5pt;
+            height: 80px }
+
+            td.ref_fix_lt		{ background: rgb(250,250,250);
+            border-left: 1.5pt solid black;
+            border-top: 1.5pt solid black;
+            width: 80px }
+
+            td.ref_fix_rt		{ background: rgb(250,250,250);
+            border-right: 1.5pt solid black;
+            border-top: 1.5pt solid black;
+            width: 80px }
+
+            td.ref_dev		    { background: rgb(250,250,250);
+            border-top: 1.5pt solid black;
+            width: 80px }
+
+            td.ref_mod_data		{ width: 120px }
+
+            img.mod_img		    { width: 84px }
+
+            div.mod_name		{ background: black;
+            color: white;
+            border-bottom: 2pt solid black }
+
+            img.device		    { border: 0pt }
+
+            tr.header		    { font-weight: bold }
+
+            tr.r0			    { background-color: rgb(232,232,232) }
+
+            tr.r1			    { background-color: white }
+
+
+            td.header		    { border-top:       0.5pt solid black;
+                              border-bottom:    2.0pt solid black;
+                              border-left:      0.5pt solid black;
+                              border-right:     0.5pt solid black;
+                              background-color: rgb(200,200,200);
+                              padding:          2pt
+            }
+
+            td.ld_cell          { border:0.5pt solid black;
+            vertical-align:top;
+            padding: 2pt }
+
+            thead               { display: table-header-group }
+
+
+            td.bom_req		    { background-color: rgb(232,232,232) }
+
+            td.bom_cell         { border: 0.5pt solid black;
+            vertical-align: top
+            }
+
+            table.din_view		{ border: 1pt solid black;
+            background: #FFFFCC;
+            border-collapse: collapse;
+            empty-cells: show;
+            table-layout: fixed;
+            }
+
+            table.din_table		{ border: none;
+            background: #FFFFCC;
+            border-collapse: collapse;
+            empty-cells: show;
+            table-layout: fixed;
+            }
+
+            td.din_cell		{ background: white;
+            border-top:     0.01in solid black;
+            border-bottom:  0.01in solid black;
+            width: 5px;
+            height: 15px }
+
+            td.din_cell_left		{ background: white;
+            border-left:    0.01in solid black;
+            border-top:     0.01in solid black;
+            border-bottom:  0.01in solid black;
+            width: 5px;
+            height: 15px }
+
+            td.din_cell_right		{ background: white;
+            border-right:   0.01in solid black;
+            border-top:     0.01in solid black;
+            border-bottom:  0.01in solid black;
+            width: 5px;
+            height: 15px }
+
+            td.din_selct		{ background: rgb(150,150,150);
+            border-top:     0.03in solid black;
+            border-bottom:  0.03in solid black;
+            width: 5px;
+            height: 15px }
+
+            td.din_selct_first		{ background: rgb(150,150,150);
+            border-left:    0.03in solid black;
+            border-top:     0.03in solid black;
+            border-bottom:  0.03in solid black;
+            font-weight: bold;
+            width: 5px;
+            height: 15px }
+
+            td.din_selct_last		{ background: rgb(150,150,150);
+            border-right:   0.03in solid black;
+            border-top:     0.03in solid black;
+            border-bottom:  0.03in solid black;
+            width: 5px;
+            height: 15px }
+
+            tr.din_row		    { spacing: 1px }
+
+            td.din_encl 		  { padding-top: 5pt;
+            padding-left: 5pt;
+            padding-right: 5pt;
+            width: 120px }
+
+            td.terminal {border-bottom: 0.01in solid black;
+            border-right: 0.01in solid black;
+            text-align:left;
+            font-size: 8pt}
+
+            td.connect {border-bottom: 0.01in solid black;
+            white-space: nowrap;
+            text-align:left;
+            font-size: 8pt}
+
+            td.conn_load {border-bottom: 0.01in solid black;
+            text-align:left;
+            font-family:arial;
+            font-weight:bold;
+            font-size: 8pt}
+
+            td.terminal_header {background: rgb(214,214,214);
+            border-bottom: 0.02in solid black;
+            text-align:left;
+            color:black;
+            font-family:arial;
+            font-style:italic;
+            font-size: 8pt}
+
+            td.connect_header {background: rgb(214,214,214);
+            border-bottom: 0.02in solid black;
+            border-left: 1pt solid black;
+            text-align:left;
+            color:black;
+            font-family:arial;
+            font-style:italic;
+            font-size: 8pt}
+
+            table.din_terms {border: 0.02in solid black;
+            table-layout: automatic;
+            border-collapse:collapse;
+            vertical-align:top;}
+
+            td.device_connect {padding-top: 28pt;}
+            
+          -->
+		</style>
+	</head>
+	<body class="default">
+		<table class="header" width="100%">
+			<tr>
+				<td colspan="25" rowspan="3">
+					<img width="200" src="logogr.jpg"/>
+				</td>
+			</tr>
+			<tr/>
+			<tr/>
+			<tr class="titleblock">
+				<td class="titletop" width="100%" colspan="25">
+					<table class="header_title">
+						<tr>
+							<td align="right" width="8%">
+								<b>Report: </b>
+							</td>
+							<td width="92%">Load Wiring</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="titleblock">
+				<td width="8%" align="right">
+					<b>Project: </b>
+				</td>
+				<td width="32%">10.29.14 HILL</td>
+				<td width="13%" align="right">
+					<b>Dealer: </b>
+				</td>
+				<td width="47%"></td>
+			</tr>
+			<tr class="titleblock">
+				<td align="right">
+					<b>Creator: </b>
+				</td>
+				<td>
+                    Crestron D3 Pro v3.02.002</td>
+				<td align="right">
+					<b>Description: </b>
+				</td>
+				<td></td>
+			</tr>
+			<tr class="titleblock">
+				<td class="titlebottom" align="right">
+					<b>Date: </b>
+				</td>
+				<td class="titlebottom">11/21/2014</td>
+				<td class="titlebottom" align="right">
+					<b>System Number:</b>
+				</td>
+				<td class="titlebottom"></td>
+			</tr>
+		</table>
+		<br/>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 1 ], Total Load : 0W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cur">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="right">
+						<col style="width: 70%"/>
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Module 1: CLX-1DIM8</td>
+						</tr>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 0A</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b>
+									<b> Feed for Module 1</b>
+								</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="hot" align="center">LINE</td>
+							<td class="hot" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> BLACK </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 5</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 6</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 7</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 8</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="ckt_loc">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td class="feedseparate" colspan="2" align="center">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b> Neutral feed for Module 1</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 3 ], Total Load : 0W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cur">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="right">
+						<col style="width: 70%"/>
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Module 3: CLX-1DIM8</td>
+						</tr>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 03</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b>
+									<b> Feed for Module 3</b>
+								</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="hot" align="center">LINE</td>
+							<td class="hot" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> BLACK </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 5</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 6</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 7</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 8</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="ckt_loc">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td class="feedseparate" colspan="2" align="center">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b> Neutral feed for Module 3</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+              &lt; Unattached &gt;
+             <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 4 ], Total Load : 0W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cur">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="left">
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<col style="width: 70%"/>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Module 4: CLX-1DELV4</td>
+							<td>
+							</td>
+						</tr>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 04</td>
+							<td></td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Neutral feed for Module 4</b>
+							</td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="feedseparate" colspan="2">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td>
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="hot" style="font-size: 5pt" align="left" valign="bottom"> BLACK </td>
+							<td class="hot" align="center">LINE</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Feed for Module 4</b>
+							</td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 5 ], Total Load : 400W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cur">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="right">
+						<col style="width: 70%"/>
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Module 5: CLX-1DELV4</td>
+						</tr>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 05</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b>
+									<b> Feed for Module 5</b>
+								</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="hot" align="center">LINE</td>
+							<td class="hot" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> BLACK </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/205 MASTER BED/MATER BED CANS
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/206 MASTER HALL/MASTER HALL BATHRM
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/205 MASTER BED/MASTER BED ART
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/206 MASTER HALL/MASTER HALL FOYER ART
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="ckt_loc">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td class="feedseparate" colspan="2" align="center">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b> Neutral feed for Module 5</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/205 MASTER BED/MATER BED CANS <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/206 MASTER HALL/MASTER HALL BATHRM <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/205 MASTER BED/MASTER BED ART <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/206 MASTER HALL/MASTER HALL FOYER ART <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 6 ], Total Load : 0W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cur">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="left">
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<col style="width: 70%"/>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Module 6: CLX-1DELV4</td>
+							<td>
+							</td>
+						</tr>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 06</td>
+							<td></td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Neutral feed for Module 6</b>
+							</td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="feedseparate" colspan="2">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td>
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="hot" style="font-size: 5pt" align="left" valign="bottom"> BLACK </td>
+							<td class="hot" align="center">LINE</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Feed for Module 6</b>
+							</td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 7 ], Total Load : 400W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cur">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="right">
+						<col style="width: 70%"/>
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Module 7: CLX-1DELV4</td>
+						</tr>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 07</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b>
+									<b> Feed for Module 7</b>
+								</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="hot" align="center">LINE</td>
+							<td class="hot" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> BLACK </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/203 GUEST RM 2/GUEST2 HALL CENTER CANS
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">Z COMMON AREAS/005 GUEST HALL/GUEST HALL2 MAIN
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/201 GUEST RM 1/GUEST1 HALL CENTER CANS
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/201 GUEST RM 1/GUEST1 RM CENTER
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="ckt_loc">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td class="feedseparate" colspan="2" align="center">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b> Neutral feed for Module 7</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/203 GUEST RM 2/GUEST2 HALL CENTER CANS <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">Z COMMON AREAS/005 GUEST HALL/GUEST HALL2 MAIN <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/201 GUEST RM 1/GUEST1 HALL CENTER CANS <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/201 GUEST RM 1/GUEST1 RM CENTER <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 8 ], Total Load : 0W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cur">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="left">
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<col style="width: 70%"/>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Module 8: CLX-1DELV4</td>
+							<td>
+							</td>
+						</tr>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 08</td>
+							<td></td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Neutral feed for Module 8</b>
+							</td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="feedseparate" colspan="2">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td>
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="hot" style="font-size: 5pt" align="left" valign="bottom"> BLACK </td>
+							<td class="hot" align="center">LINE</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Feed for Module 8</b>
+							</td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 9 ], Total Load : 400W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cur">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="right">
+						<col style="width: 70%"/>
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Module 9: CLX-1DELV4</td>
+						</tr>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 09</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b>
+									<b> Feed for Module 9</b>
+								</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="hot" align="center">LINE</td>
+							<td class="hot" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> BLACK </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/201 GUEST RM 1/GUEST1 HALL ART CANS
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">Z COMMON AREAS/005 GUEST HALL/GUEST HALL2 ART
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/203 GUEST RM 2/GUEST2 HALL ART CANS
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/203 GUEST RM 2/GUEST2 RM CENTER
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="ckt_loc">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td class="feedseparate" colspan="2" align="center">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b> Neutral feed for Module 9</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/201 GUEST RM 1/GUEST1 HALL ART CANS <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">Z COMMON AREAS/005 GUEST HALL/GUEST HALL2 ART <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/203 GUEST RM 2/GUEST2 HALL ART CANS <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">SOUTH AREA/203 GUEST RM 2/GUEST2 RM CENTER <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 10 ], Total Load : 0W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cur">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="left">
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<col style="width: 70%"/>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Module 10: CLX-1DIM4</td>
+							<td>
+							</td>
+						</tr>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 10</td>
+							<td></td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Neutral feed for Module 10</b>
+							</td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="feedseparate" colspan="2">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td>
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="hot" style="font-size: 5pt" align="left" valign="bottom"> BLACK </td>
+							<td class="hot" align="center">LINE</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Feed for Module 10</b>
+							</td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 11 ], Total Load : 400W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cur">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="right">
+						<col style="width: 70%"/>
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Module 11: CLX-1DELV4</td>
+						</tr>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 11</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b>
+									<b> Feed for Module 11</b>
+								</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="hot" align="center">LINE</td>
+							<td class="hot" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> BLACK </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/107 GREAT RM/GREAT RM MAIN
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/107 GREAT RM/GREAT RM CENTER
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/107 GREAT RM/GREAT RM BAR
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/107 GREAT RM/GREAT RM CABINETS
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="ckt_loc">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td class="feedseparate" colspan="2" align="center">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b> Neutral feed for Module 11</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/107 GREAT RM/GREAT RM MAIN <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/107 GREAT RM/GREAT RM CENTER <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/107 GREAT RM/GREAT RM BAR <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/107 GREAT RM/GREAT RM CABINETS <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 12 ], Total Load : 0W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cur">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="left">
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<col style="width: 70%"/>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Module 12: CLX-1DIM8</td>
+							<td>
+							</td>
+						</tr>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 12</td>
+							<td></td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 8</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 7</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 6</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 5</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Neutral feed for Module 12</b>
+							</td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="feedseparate" colspan="2">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td>
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 8</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 7</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 6</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 5</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="hot" style="font-size: 5pt" align="left" valign="bottom"> BLACK </td>
+							<td class="hot" align="center">LINE</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Feed for Module 12</b>
+							</td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 13 ], Total Load : 400W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: always
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cur">13</td>
+										<td align="center" class="encl_cell">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="right">
+						<col style="width: 70%"/>
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Module 13: CLX-1DELV4</td>
+						</tr>
+						<tr>
+							<td>
+							</td>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 13</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b>
+									<b> Feed for Module 13</b>
+								</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="hot" align="center">LINE</td>
+							<td class="hot" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> BLACK </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/104 KITCHEN/KITCHEN MAIN
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/104 KITCHEN/KITCHEN CABINETS
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">Z COMMON AREAS/006 MAIN HALL/MAIN HALL ART
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">Z COMMON AREAS/006 MAIN HALL/MAIN HALL MAIN
+                ( 100W )
+               <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_red" style="border-bottom: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="right" valign="bottom"> RED </td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="ckt_loc">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td class="feedseparate" colspan="2" align="center">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">
+								<b> Neutral feed for Module 13</b>
+								<span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/104 KITCHEN/KITCHEN MAIN <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">NORTH AREA/104 KITCHEN/KITCHEN CABINETS <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">Z COMMON AREAS/006 MAIN HALL/MAIN HALL ART <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_loc" align="right">Z COMMON AREAS/006 MAIN HALL/MAIN HALL MAIN <span style="font: 7pt 'crestron transport'">O</span>
+							</td>
+							<td class="ckt_white" style="border-top: 0pt; border-right: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN</td>
+							<td class="ckt_white" style="border-top: 0pt; font-size: 5pt" align="right" valign="bottom"> WHITE </td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%">
+			<tr class="pageseparate">
+				<td class="pagetitle">
+					<b>Equipment Room/Enclosure 1</b> - [ slot 14 ], Total Load : 1580W
+                  </td>
+			</tr>
+		</table>
+		<br/>
+		<table class="default" width="100%" style="
+              page-break-after: never
+            ">
+			<tr valign="top">
+				<td class="encl">
+					<table>
+						<tr>
+							<td align="center">
+								<table class="encl_view">
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">13</td>
+										<td align="center" class="encl_cur">14</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">11</td>
+										<td align="center" class="encl_cell">12</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">9</td>
+										<td align="center" class="encl_cell">10</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">7</td>
+										<td align="center" class="encl_cell">8</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">5</td>
+										<td align="center" class="encl_cell">6</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">3</td>
+										<td align="center" class="encl_cell">4</td>
+									</tr>
+									<tr class="encl_row">
+										<td align="center" class="encl_cell">1</td>
+										<td align="center" class="encl_cell">2</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table class="module" cellpadding="0" cellspacing="0" align="left">
+						<col style="width: 15%"/>
+						<col style="width: 15%"/>
+						<col style="width: 70%"/>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Module 14: CLX-2DIM8</td>
+							<td>
+							</td>
+						</tr>
+						<tr>
+							<td class="modulename" align="center" colspan="2">Net-Device ID 14</td>
+							<td>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 8</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 7</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> NORTH AREA/108 HIS OFFICE/HIS OFFICE CHANDELIER</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 6</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> Z COMMON AREAS/006 MAIN HALL/MAIN HALL CHANDELIERS</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 5</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> SOUTH AREA/206 MASTER HALL/MASTER HALL FOYER MAIN</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Neutral feed 2 for Module 14</b>
+							</td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="feedseparate" colspan="2">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td>
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 8</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 7</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+                ( 480W )
+              NORTH AREA/108 HIS OFFICE/HIS OFFICE CHANDELIER</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 6</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+                ( 1000W )
+              Z COMMON AREAS/006 MAIN HALL/MAIN HALL CHANDELIERS</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 5</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+                ( 100W )
+              SOUTH AREA/206 MASTER HALL/MASTER HALL FOYER MAIN</td>
+						</tr>
+						<tr class="circuit">
+							<td class="hot" style="font-size: 5pt" align="left" valign="bottom"> BLACK </td>
+							<td class="hot" align="center">LINE 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Feed 2 for Module 14</b>
+							</td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="feedseparate" colspan="2">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td>
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+              N OUT 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_white" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> WHITE </td>
+							<td class="ckt_white" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">N IN 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Neutral feed 1 for Module 14</b>
+							</td>
+						</tr>
+						<tr style="height: 4pt">
+							<td class="feedseparate" colspan="2">
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+							<td>
+								<span style="font-size: 3.5pt">
+								</span>
+							</td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 4</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 3</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 2</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="ckt_red" style="border-bottom: 0pt; font-size: 5pt" align="left" valign="bottom"> RED </td>
+							<td class="ckt_red" style="border-bottom: 0pt; font-weight: bold; font-size: 8.5pt" align="center">
+          DIM 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span> 
+              &lt; Unattached &gt;
+            </td>
+						</tr>
+						<tr class="circuit">
+							<td class="hot" style="font-size: 5pt" align="left" valign="bottom"> BLACK </td>
+							<td class="hot" align="center">LINE 1</td>
+							<td class="ckt_loc" align="left">
+								<span style="font: 7pt 'crestron transport'">O</span>
+								<b> Feed 1 for Module 14</b>
+							</td>
+						</tr>
+					</table>
+					<br/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+	</body>
+</html>
