@@ -1,36 +1,16 @@
 namespace Crestron.Seawolf.CRPC.CIPDirectTransport;
         // class declarations
-         class CIPServerTransport;
          class CIPCommon;
          class CIPHeartbeatRequest;
          class CIPHeartbeatResponse;
          class CIPConnectRequest;
          class CIPConnectResponse;
          class CIPData;
-         class CIPTransportBase;
-         class CIPClientTransport;
          class BEBinaryWriter;
          class BEBinaryReader;
-     class CIPServerTransport 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        FUNCTION AddFilter ( STRING name );
-        FUNCTION RemoveFilter ( STRING name );
-        FUNCTION Stop ( SIGNED_LONG_INTEGER msToWait );
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        STRING Type[];
-    };
-
+         class CIPTransportBase;
+         class CIPServerTransport;
+         class CIPClientTransport;
      class CIPCommon 
     {
         // class delegates
@@ -143,6 +123,26 @@ namespace Crestron.Seawolf.CRPC.CIPDirectTransport;
         // class properties
     };
 
+     class BEBinaryWriter 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        FUNCTION Write ( SIGNED_INTEGER value );
+        FUNCTION Close ();
+        FUNCTION Dispose ();
+        FUNCTION Flush ();
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+    };
+
      class CIPTransportBase 
     {
         // class delegates
@@ -164,6 +164,26 @@ namespace Crestron.Seawolf.CRPC.CIPDirectTransport;
         // class properties
         STRING Type[];
         LONG_INTEGER Ipid;
+    };
+
+     class CIPServerTransport 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        FUNCTION AddFilter ( STRING name );
+        FUNCTION RemoveFilter ( STRING name );
+        FUNCTION Stop ( SIGNED_LONG_INTEGER msToWait );
+        STRING_FUNCTION ToString ();
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING Type[];
     };
 
      class CIPClientTransport 
@@ -188,24 +208,5 @@ namespace Crestron.Seawolf.CRPC.CIPDirectTransport;
         // class properties
         STRING Type[];
         LONG_INTEGER Ipid;
-    };
-
-     class BEBinaryWriter 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        FUNCTION Write ( SIGNED_INTEGER value );
-        FUNCTION Close ();
-        FUNCTION Flush ();
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
     };
 

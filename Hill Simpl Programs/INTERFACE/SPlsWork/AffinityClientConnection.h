@@ -1,47 +1,19 @@
 namespace AffinityClientConnectionModule.Client;
         // class declarations
-         class ClientConnectionForSimplPlus;
          class ProxyServer;
          class ModuleType;
          class ConnectionState;
          class SignalInfo;
-         class RepeatDigital;
          class RemoteSystemControlProxy;
+         class RepeatDigital;
          class SignalData;
          class eSigType;
          class JoinPacketTypes;
          class SignalDataObject;
          class SmartObjectJoinConnectionProxy;
-         class RemoteSystemControlProxyV2;
          class SmartObjectJoinConnectionProxyV2;
-     class ClientConnectionForSimplPlus 
-    {
-        // class delegates
-        delegate FUNCTION FunctionParamsIntArrayDelegate ( INTEGER paramUshortArray[] );
-        delegate FUNCTION FunctionParamsIntDelegate ( INTEGER paramUshort );
-
-        // class events
-
-        // class functions
-        FUNCTION Initialize ( INTEGER paramClientControllingServer , STRING paramModuleName );
-        FUNCTION EnableConnection ();
-        FUNCTION CloseConnection ();
-        FUNCTION Debug ( INTEGER paramDebugMode );
-        FUNCTION SetDigitalJoinValue ( STRING paramJoinName , INTEGER paramJoinValue );
-        FUNCTION SetSignalNameFromSymbolList ( INTEGER paramSymbolIndexOneBased , STRING paramJoinName );
-        FUNCTION RemoveSymbolJoinIndexFromClientListDict ( INTEGER paramSymbolIndexOneBased );
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        DelegateProperty FunctionParamsIntArrayDelegate SignalFbStatusArray;
-        DelegateProperty FunctionParamsIntDelegate ConnectionStatus;
-        STRING KeyModuleName[];
-    };
-
+         class ClientConnectionForSimplPlus;
+         class RemoteSystemControlProxyV2;
     static class ProxyServer 
     {
         // class delegates
@@ -57,16 +29,16 @@ namespace AffinityClientConnectionModule.Client;
         static FUNCTION Disconnect ();
         static FUNCTION UpdateServerWithAllClientModuleData ();
         static FUNCTION ProcessSendAllModuleDataToServer ();
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
-        static SIGNED_LONG_INTEGER ServerPort;
-        static STRING ServerIPorHostName[];
         static STRING ClientIPorHostName[];
 
         // class properties
         ConnectionState ConnectionStatus;
+        STRING ServerIp[];
+        SIGNED_LONG_INTEGER ServerPort;
         SIGNED_LONG_INTEGER CrpcVersion;
         STRING ProxyName[];
     };
@@ -93,8 +65,8 @@ namespace AffinityClientConnectionModule.Client;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -110,8 +82,8 @@ namespace AffinityClientConnectionModule.Client;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -135,12 +107,89 @@ namespace AffinityClientConnectionModule.Client;
         static SIGNED_LONG_INTEGER BlinkMediumDigital;
     };
 
+     class ClientConnectionForSimplPlus 
+    {
+        // class delegates
+        delegate FUNCTION FunctionParamsIntArrayDelegate ( INTEGER paramUshortArray[] );
+        delegate FUNCTION FunctionParamsIntDelegate ( INTEGER paramUshort );
+
+        // class events
+
+        // class functions
+        FUNCTION Initialize ( INTEGER paramClientControllingServer , STRING paramModuleName );
+        FUNCTION EnableConnection ();
+        FUNCTION CloseConnection ();
+        FUNCTION Debug ( INTEGER paramDebugMode );
+        FUNCTION SetDigitalJoinValue ( STRING paramJoinName , INTEGER paramJoinValue );
+        FUNCTION SetSignalNameFromSymbolList ( INTEGER paramSymbolIndexOneBased , STRING paramJoinName );
+        FUNCTION RemoveSymbolJoinIndexFromClientListDict ( INTEGER paramSymbolIndexOneBased );
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        DelegateProperty FunctionParamsIntArrayDelegate SignalFbStatusArray;
+        DelegateProperty FunctionParamsIntDelegate ConnectionStatus;
+        STRING KeyModuleName[];
+    };
+
+namespace AffinityClientConnection;
+        // class declarations
+         class Constants;
+    static class Constants 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+    };
+
 namespace AffinityClientConnection.Client.Serial_Client_Interface;
         // class declarations
-         class MediaPlayerSerialClientProxy;
-         class CrpcRoutingId;
+         class MessageObject;
          class SerialInterfaceCRPCClient;
+         class CrpcRoutingId;
+         class MediaPlayerSerialClientProxy;
          class SerialClientInterface;
+    static class SerialInterfaceCRPCClient 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        static FUNCTION ProxyServer_OnNotCrpcReady ();
+        static FUNCTION Initialize ();
+        static FUNCTION UpdateConnectionStatus ();
+        static FUNCTION SendMessageToServer ( STRING message );
+        static FUNCTION ProcessMessageFromServer ( STRING message );
+        static FUNCTION ProcessRoutedMessageFromServer ( STRING message , SIGNED_LONG_INTEGER id );
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+    };
+
+    static class CrpcRoutingId // enum
+    {
+        static SIGNED_LONG_INTEGER MediaPlayerSourceSelect;
+        static SIGNED_LONG_INTEGER MediaPlayerSourceControl;
+        static SIGNED_LONG_INTEGER MediaPlayerGenericSerialJoin;
+    };
+
      class MediaPlayerSerialClientProxy 
     {
         // class delegates
@@ -155,8 +204,8 @@ namespace AffinityClientConnection.Client.Serial_Client_Interface;
         FUNCTION SourceControlCrpcFromSmartObject ( STRING pkt );
         FUNCTION ClientRxV2 ( STRING pkt , SIGNED_LONG_INTEGER id );
         FUNCTION Dispose ();
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -166,35 +215,6 @@ namespace AffinityClientConnection.Client.Serial_Client_Interface;
         DelegateProperty DelegateSimplString MessageFromServerToSourceControl;
         DelegateProperty DelegateSimplString SendSerial;
         DelegateProperty DelegateFnUshort TriggerServerConnected;
-    };
-
-    static class CrpcRoutingId // enum
-    {
-        static SIGNED_LONG_INTEGER MediaPlayerSourceSelect;
-        static SIGNED_LONG_INTEGER MediaPlayerSourceControl;
-        static SIGNED_LONG_INTEGER MediaPlayerGenericSerialJoin;
-    };
-
-    static class SerialInterfaceCRPCClient 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        static FUNCTION ProxyServer_OnNotCrpcReady ();
-        static FUNCTION Initialize ();
-        static FUNCTION UpdateConnectionStatus ();
-        static FUNCTION SendMessageToServer ( STRING message );
-        static FUNCTION ProcessMessageFromServer ( STRING message );
-        static FUNCTION ProcessRoutedMessageFromServer ( STRING message , SIGNED_LONG_INTEGER id );
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
     };
 
      class SerialClientInterface 
@@ -209,33 +229,30 @@ namespace AffinityClientConnection.Client.Serial_Client_Interface;
         FUNCTION Initialize ();
         FUNCTION ClientRx ( STRING pkt );
         FUNCTION Dispose ();
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
 
         // class properties
         DelegateProperty DelegateSimplString ClientTx;
+        DelegateProperty DelegateSimplString SendSerial;
         DelegateProperty DelegateFnUshort TriggerServerConnected;
     };
 
-namespace AffinityClientConnection.Client.Serial_Client_Interface.CRPC_Calls;
+namespace AffinityClientConnection.Logging;
         // class declarations
-         class SmartObjectSerialJoinConnection;
-     class SmartObjectSerialJoinConnection 
+         class Log;
+    static class Log 
     {
         // class delegates
 
         // class events
 
         // class functions
-        FUNCTION SendMessageToServer ( STRING message );
-        FUNCTION RequestNewTagFromServer ();
-        FUNCTION SendIsSmartObjectTagValid ( SIGNED_LONG_INTEGER tag );
-        FUNCTION Dispose ();
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -257,8 +274,8 @@ namespace AffinityClientConnection.Configuration;
         static FUNCTION SetServerIPAddressorHostName ( STRING address );
         static FUNCTION SetServerPort ( INTEGER port );
         static FUNCTION SendOutServerConnectInfoEvent ();
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -266,37 +283,22 @@ namespace AffinityClientConnection.Configuration;
         // class properties
     };
 
-namespace AffinityClientConnection.Logging;
+namespace AffinityClientConnection.Client.Serial_Client_Interface.CRPC_Calls;
         // class declarations
-         class Log;
-    static class Log 
+         class SmartObjectSerialJoinConnection;
+     class SmartObjectSerialJoinConnection 
     {
         // class delegates
 
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
+        FUNCTION SendMessageToServer ( STRING message );
+        FUNCTION RequestNewTagFromServer ();
+        FUNCTION SendIsSmartObjectTagValid ( SIGNED_LONG_INTEGER tag );
+        FUNCTION Dispose ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-    };
-
-namespace AffinityClientConnection;
-        // class declarations
-         class Constants;
-    static class Constants 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
         STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
 
         // class variables
         INTEGER __class_id__;

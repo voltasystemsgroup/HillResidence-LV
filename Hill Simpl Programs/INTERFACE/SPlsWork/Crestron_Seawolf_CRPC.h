@@ -1,43 +1,25 @@
-namespace Crestron.Seawolf.CRPC.v2.Objects;
-        // class declarations
-         class CrpcRemoteObjectBase;
-         class CrpcRemoteObjectProxy;
-     class CrpcRemoteObjectBase 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        CrpcRemoteObjectProxy Proxy;
-        STRING Name[];
-        STRING Instance[];
-        STRING Categories[][];
-        STRING Interfaces[][];
-        STRING TypeName[];
-        STRING TypeVersion[];
-    };
-
 namespace Crestron.Seawolf.CRPC;
         // class declarations
-         class XLockObject;
-         class ClientTransportLayer;
+         class CrpcEventInfo;
+         class CrpcDirectory;
+         class CrpcDescriptor;
+         class JSONRPCResponseMembersMethodArray;
+         class JSONRPCResponseMembersPropertyArray;
+         class JSONRPCResponseMembersEventArray;
          class CrpcServiceObject;
          class CrpcObject;
-         class CrpcDescriptor;
          class ClientToServerGetObjects;
          class serverObject;
-         class ConnectionInfo;
-         class ServerTransportLayer;
          class CrpcUtility;
-         class CrpcService;
+         class ConnectionInfo;
+         class ClientTransportLayer;
+         class JSONRPCMethod;
+         class JSONRPCEvent;
+         class JSONRPCEventParams;
+         class CrpcJsonException;
+         class JSONRPCResponseObjectArray;
+         class XLock;
+         class ServerTransportLayer;
          class CrpcConstants;
          class CrpcServiceConstants;
          class JsonRpc2Errors;
@@ -50,35 +32,49 @@ namespace Crestron.Seawolf.CRPC;
          class Property;
          class GetObjects;
          class GetMembers;
-         class JSONRPCResponseMembersMethodArray;
-         class JSONRPCResponseMembersPropertyArray;
-         class JSONRPCResponseMembersEventArray;
-         class CrpcClientService;
          class CrpcEvents;
-         class JSONRPCMethod;
-         class JSONRPCEvent;
-         class JSONRPCEventParams;
-         class CrpcJsonException;
-         class XLock;
-         class CrpcEventInfo;
+         class CrpcClientService;
          class ClientToServerRegistration;
-         class CrpcDirectory;
-         class JSONRPCResponseObjectArray;
-     class XLockObject 
+         class XLockObject;
+         class CrpcService;
+     class CrpcEventInfo 
     {
         // class delegates
 
         // class events
 
         // class functions
-        FUNCTION Unlock ();
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
 
         // class properties
+        STRING EventName[];
+        STRING Handle[];
+    };
+
+     class CrpcDirectory 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        FUNCTION Unregister ( STRING name );
+        FUNCTION Dispose ();
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING Version[];
+        STRING Name[];
+        SIGNED_LONG_INTEGER MaxPacketSize;
+        SIGNED_LONG_INTEGER ObjectCount;
     };
 
      class CrpcServiceObject 
@@ -88,8 +84,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -104,8 +100,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -124,12 +120,29 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         STRING name[];
         STRING instanceName[];
+
+        // class properties
+    };
+
+    static class CrpcUtility 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        static STRING_FUNCTION RemoveQuotes ( STRING paramInputString );
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
 
         // class properties
     };
@@ -141,8 +154,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -161,8 +174,8 @@ namespace Crestron.Seawolf.CRPC;
         FUNCTION AddFilter ( STRING name );
         FUNCTION RemoveFilter ( STRING name );
         FUNCTION Initialize ( STRING Type );
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -172,48 +185,6 @@ namespace Crestron.Seawolf.CRPC;
         STRING Name[];
     };
 
-    static class CrpcUtility 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        static STRING_FUNCTION RemoveQuotes ( STRING paramInputString );
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-    };
-
-     class CrpcService 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        FUNCTION Initialize ( STRING name );
-        FUNCTION Unregister ( STRING name );
-        FUNCTION Dispose ();
-        static FUNCTION ValidateRequest ( JSONRPCMethod request );
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        CrpcService Instance;
-        STRING Version[];
-        STRING Name[];
-        SIGNED_LONG_INTEGER MaxPacketSize;
-        SIGNED_LONG_INTEGER ObjectCount;
-    };
-
     static class CrpcConstants 
     {
         // class delegates
@@ -221,8 +192,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -237,8 +208,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static SIGNED_LONG_INTEGER MAX_PACKET_SIZE;
@@ -261,8 +232,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static SIGNED_LONG_INTEGER PARSE_ERROR;
@@ -289,8 +260,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static STRING JSONRPC_VERSION[];
@@ -310,8 +281,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static STRING JSONRPC_REGISTEREVENT[];
@@ -329,8 +300,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static STRING JSONRPC_DEREGISTEREVENT[];
@@ -348,8 +319,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static STRING JSONRPC_EVENT[];
@@ -368,8 +339,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static STRING JSONRPC_REGISTER[];
@@ -393,8 +364,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static STRING JSONRPC_METHOD[];
@@ -409,8 +380,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static STRING JSONRPC_PROPERTY_GET[];
@@ -428,8 +399,8 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static STRING JSONRPC_GETOBJECTS[];
@@ -450,13 +421,29 @@ namespace Crestron.Seawolf.CRPC;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static STRING JSONRPC_GETMEMBERS[];
         static STRING JSONRPC_GETMEMBERS_OBJECT[];
         static STRING JSONRPC_GETMEMBERS_ACCESS[];
+
+        // class properties
+    };
+
+     class CrpcEvents 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
 
         // class properties
     };
@@ -470,8 +457,8 @@ namespace Crestron.Seawolf.CRPC;
         // class functions
         FUNCTION Unregister ( STRING name );
         FUNCTION Dispose ();
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -483,15 +470,16 @@ namespace Crestron.Seawolf.CRPC;
         SIGNED_LONG_INTEGER ObjectCount;
     };
 
-     class CrpcEvents 
+     class XLockObject 
     {
         // class delegates
 
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
+        FUNCTION Unlock ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -499,246 +487,80 @@ namespace Crestron.Seawolf.CRPC;
         // class properties
     };
 
-     class CrpcEventInfo 
+     class CrpcService 
     {
         // class delegates
 
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        STRING EventName[];
-        STRING Handle[];
-    };
-
-     class CrpcDirectory 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
+        FUNCTION Initialize ( STRING name );
         FUNCTION Unregister ( STRING name );
         FUNCTION Dispose ();
-        STRING_FUNCTION ToString ();
+        static FUNCTION ValidateRequest ( JSONRPCMethod request );
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
 
         // class properties
+        CrpcService Instance;
         STRING Version[];
         STRING Name[];
         SIGNED_LONG_INTEGER MaxPacketSize;
         SIGNED_LONG_INTEGER ObjectCount;
     };
 
-namespace Crestron.Seawolf.CRPC.v2.Messages.Exceptions;
+namespace Crestron.Seawolf.CRPC.CrpcGenericClient;
         // class declarations
-         class CrpcClientNotRegisteredException;
-         class CrpcClientConnectionClosedException;
-         class CrpcClientRequestTimedoutException;
-     class CrpcClientNotRegisteredException 
+         class CrpcClient;
+         class GenericClientFunctions;
+         class SceneStatusEnum;
+         class ModuleType;
+         class ClientMessageTypes;
+     class CrpcClient 
     {
         // class delegates
 
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
-        INTEGER __class_id__;
+        Crestron.Seawolf.CRPC.ClientToServerGetObjects ClientObjectGetObjects;
+        Crestron.Seawolf.CRPC.ClientToServerRegistration ClientObjectRegister;
+        Crestron.Seawolf.CRPC.CrpcGenericClient.GenericClientFunctions GeneralFunctions;
 
         // class properties
-        STRING Message[];
-        STRING StackTrace[];
-        STRING HelpLink[];
-        STRING Source[];
+        SIGNED_LONG_INTEGER GetMessageId;
     };
 
-     class CrpcClientConnectionClosedException 
+    static class SceneStatusEnum // enum
     {
-        // class delegates
-
-        // class events
-
-        // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        STRING Message[];
-        STRING StackTrace[];
-        STRING HelpLink[];
-        STRING Source[];
+        static SIGNED_LONG_INTEGER NotFound;
+        static SIGNED_LONG_INTEGER Active;
+        static SIGNED_LONG_INTEGER NotActive;
     };
 
-namespace Crestron.Seawolf.CRPC.v2.Encodings;
-        // class declarations
-         class Utf8Encoder;
-         class EncoderManager;
-     class Utf8Encoder 
+    static class ModuleType // enum
     {
-        // class delegates
-
-        // class events
-
-        // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        STRING Type[];
-        STRING Name[];
+        static SIGNED_LONG_INTEGER None;
+        static SIGNED_LONG_INTEGER ClientDriven;
+        static SIGNED_LONG_INTEGER ServerDriven;
     };
 
-     class EncoderManager 
+    static class ClientMessageTypes // enum
     {
-        // class delegates
-
-        // class events
-
-        // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        STRING DefaultName[];
-    };
-
-namespace Crestron.Seawolf.CRPC.v2.Formats;
-        // class declarations
-         class BsonFormat;
-         class FormatsManager;
-         class XmlFormat;
-         class Util;
-         class JsonFormat;
-     class BsonFormat 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        STRING Type[];
-        STRING Name[];
-    };
-
-     class FormatsManager 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        STRING DefaultFormatName[];
-        STRING DefaultEncoderName[];
-    };
-
-     class XmlFormat 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        STRING Type[];
-        STRING Name[];
-    };
-
-    static class Util 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-    };
-
-     class JsonFormat 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        STRING Type[];
-        STRING Name[];
-    };
-
-namespace Crestron.Seawolf.CRPC.v2.Messages;
-        // class declarations
-         class CrpcResponseException;
-         class CrpcMessage;
-     class CrpcMessage 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        STRING JsonRpc[];
-        STRING Method[];
-        SIGNED_LONG_INTEGER Id;
+        static SIGNED_LONG_INTEGER Register;
+        static SIGNED_LONG_INTEGER GetObjects;
+        static SIGNED_LONG_INTEGER GetSceneNames;
+        static SIGNED_LONG_INTEGER GetSceneId;
+        static SIGNED_LONG_INTEGER GetChangedScenes;
+        static SIGNED_LONG_INTEGER GetSceneStatus;
+        static SIGNED_LONG_INTEGER RegisterForSceneChanges;
     };
 
 namespace Crestron.Seawolf.CRPC.v2.Service;
@@ -754,11 +576,11 @@ namespace Crestron.Seawolf.CRPC.v2.Service;
         // class events
 
         // class functions
+        FUNCTION Dispose ();
         FUNCTION Start ();
         FUNCTION Stop ();
-        FUNCTION Dispose ();
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -797,14 +619,39 @@ namespace Crestron.Seawolf.CRPC.v2.Service;
         static SIGNED_LONG_INTEGER Unregistering;
     };
 
-namespace Crestron.Seawolf.CRPC.CrpcGenericClient;
+namespace Crestron.Seawolf.CRPC.v2.Objects;
         // class declarations
-         class CrpcClient;
-         class GenericClientFunctions;
-         class SceneStatusEnum;
-         class ModuleType;
-         class ClientMessageTypes;
-     class CrpcClient 
+         class CrpcRemoteObjectBase;
+         class CrpcRemoteObjectProxy;
+     class CrpcRemoteObjectBase 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        CrpcRemoteObjectProxy Proxy;
+        STRING Name[];
+        STRING Instance[];
+        STRING Categories[][];
+        STRING Interfaces[][];
+        STRING TypeName[];
+        STRING TypeVersion[];
+    };
+
+namespace Crestron.Seawolf.CRPC.v2.Messages.Exceptions;
+        // class declarations
+         class CrpcClientNotRegisteredException;
+         class CrpcClientRequestTimedoutException;
+         class CrpcClientConnectionClosedException;
+     class CrpcClientNotRegisteredException 
     {
         // class delegates
 
@@ -815,37 +662,192 @@ namespace Crestron.Seawolf.CRPC.CrpcGenericClient;
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
 
         // class variables
-        Crestron.Seawolf.CRPC.ClientToServerGetObjects ClientObjectGetObjects;
-        Crestron.Seawolf.CRPC.ClientToServerRegistration ClientObjectRegister;
-        Crestron.Seawolf.CRPC.CrpcGenericClient.GenericClientFunctions GeneralFunctions;
+        INTEGER __class_id__;
 
         // class properties
-        SIGNED_LONG_INTEGER GetMessageId;
+        STRING Message[];
+        STRING StackTrace[];
+        STRING HelpLink[];
+        STRING Source[];
+        SIGNED_LONG_INTEGER HResult;
     };
 
-    static class SceneStatusEnum // enum
+     class CrpcClientConnectionClosedException 
     {
-        static SIGNED_LONG_INTEGER NotFound;
-        static SIGNED_LONG_INTEGER Active;
-        static SIGNED_LONG_INTEGER NotActive;
+        // class delegates
+
+        // class events
+
+        // class functions
+        STRING_FUNCTION ToString ();
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING Message[];
+        STRING StackTrace[];
+        STRING HelpLink[];
+        STRING Source[];
+        SIGNED_LONG_INTEGER HResult;
     };
 
-    static class ModuleType // enum
+namespace Crestron.Seawolf.CRPC.v2.Formats;
+        // class declarations
+         class FormatsManager;
+         class Util;
+         class JsonFormat;
+         class BsonFormat;
+         class XmlFormat;
+     class FormatsManager 
     {
-        static SIGNED_LONG_INTEGER None;
-        static SIGNED_LONG_INTEGER ClientDriven;
-        static SIGNED_LONG_INTEGER ServerDriven;
+        // class delegates
+
+        // class events
+
+        // class functions
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING DefaultFormatName[];
+        STRING DefaultEncoderName[];
     };
 
-    static class ClientMessageTypes // enum
+    static class Util 
     {
-        static SIGNED_LONG_INTEGER Register;
-        static SIGNED_LONG_INTEGER GetObjects;
-        static SIGNED_LONG_INTEGER GetSceneNames;
-        static SIGNED_LONG_INTEGER GetSceneId;
-        static SIGNED_LONG_INTEGER GetChangedScenes;
-        static SIGNED_LONG_INTEGER GetSceneStatus;
-        static SIGNED_LONG_INTEGER RegisterForSceneChanges;
+        // class delegates
+
+        // class events
+
+        // class functions
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+    };
+
+     class JsonFormat 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING Type[];
+        STRING Name[];
+    };
+
+     class BsonFormat 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING Type[];
+        STRING Name[];
+    };
+
+     class XmlFormat 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING Type[];
+        STRING Name[];
+    };
+
+namespace Crestron.Seawolf.CRPC.v2.Messages;
+        // class declarations
+         class CrpcMessage;
+         class CrpcResponseException;
+     class CrpcMessage 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING JsonRpc[];
+        STRING Method[];
+        SIGNED_LONG_INTEGER Id;
+    };
+
+namespace Crestron.Seawolf.CRPC.v2.Encodings;
+        // class declarations
+         class Utf8Encoder;
+         class EncoderManager;
+     class Utf8Encoder 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING Type[];
+        STRING Name[];
+    };
+
+     class EncoderManager 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING DefaultName[];
     };
 
 namespace Crestron.Seawolf.CRPC.v2.Interfaces;

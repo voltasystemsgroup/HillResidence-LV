@@ -6,18 +6,21 @@ namespace Crestron.MediaPlayerValidator;
      class MediaPlayerValidator 
     {
         // class delegates
+        delegate FUNCTION DelegateSimplSharpString ( SIMPLSHARPSTRING value );
 
         // class events
 
         // class functions
         STRING_FUNCTION GenerateDirectConnectMessage ( STRING version , STRING tag , STRING source , STRING ip );
-        STRING_FUNCTION ToString ();
+        FUNCTION GenerateDirectConnectMessageAndSend ( STRING version , STRING tag , STRING source , STRING ip );
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
 
         // class properties
+        DelegateProperty DelegateSimplSharpString MessageCallback;
     };
 
      class IPInfo 
@@ -27,8 +30,8 @@ namespace Crestron.MediaPlayerValidator;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         STRING ip[][];
@@ -43,8 +46,8 @@ namespace Crestron.MediaPlayerValidator;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         STRING ver[];

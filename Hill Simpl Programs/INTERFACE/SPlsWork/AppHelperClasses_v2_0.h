@@ -10,8 +10,8 @@ namespace Crestron.AppHelperClassesv2_0;
 
         // class functions
         static SIGNED_LONG_INTEGER_FUNCTION GetNewTag ();
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
